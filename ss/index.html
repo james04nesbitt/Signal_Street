@@ -5,16 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
 </head>
 <body>
-    <img class= "logo" src = "img/ss.jpg" alt = "my logo"/>
+
+    <img class= "logo" src = "{% static 'img/ss.jpg' %}"/>
+    <div class="ticker">
     <form action="/ss/" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit">
     </form>
+    </div>
 
 </body>
 </html>
