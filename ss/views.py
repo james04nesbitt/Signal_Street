@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import TickerForm
 from .finance import get_data
+from .chart import get_chart
 
+context = {}
 def index(request):
     if request.method == 'POST':
         form = TickerForm(request.POST)
@@ -16,10 +18,13 @@ def index(request):
 
 
 def ticker(request, tid):
-    context = {}
+
     data = get_data(tid)
     context['ticker'] = tid
     context["name"] = data["longName"]
     context['price'] = data["currentPrice"]
     context["info"] = data["longBusinessSummary"]
+    context['graph'] = get_chart(tid)
     return render(request, 'ticker.html', context)
+
+

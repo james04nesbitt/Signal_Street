@@ -1,0 +1,17 @@
+h1{
+    background-color: red;
+}
+
+.content{
+    margin-top: 5em;
+}
+
+body{
+    background-color: darkgray;
+
+}
+img{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
