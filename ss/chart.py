@@ -11,13 +11,13 @@ import io
 
 
 def closing_price(ticker):
-    A = pd.DataFrame(yf.download(ticker, period="1y"))
+    A = pd.DataFrame(yf.download(ticker, period="1d", interval='1m'))
     Asset = A[['Adj Close']]
     col = 'green'
     if(A['Open'][0] > A['Open'][-1]):
         col = 'red'
     return [Asset,col]
-def get_chart(Ticker):
+def get_chart(Ticker, name, ):
     Start = date.today() - timedelta(365)
     Start.strftime('%Y-%m-%d')
 
@@ -30,7 +30,7 @@ def get_chart(Ticker):
 
 
     plt.plot(data[0], color=data[1], linewidth=2)
-    plt.title(Ticker, color = data[1], fontsize = 22)
+    plt.title(name, color = data[1], fontsize = 22)
     plt.ylabel('Price ($)')
     plt.xlabel('Date')
     fig = plt.gcf()

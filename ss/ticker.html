@@ -7,15 +7,19 @@
     <meta charset="UTF-8">
     <title>{{ ticker }}</title>
 
-    <link rel="stylesheet" href="{% static 'css/ticker.css' %}">
+    <link rel="stylesheet" href="{% static 'ticker.css' %}">
 </head>
 
 <body>
+
 <div class="content">
     <h1 id="name">{{ name }}({{ ticker }})</h1>
     <h2>${{ price }}</h2>
     <img src="data:image/png;base64,{{ graph| safe }}" alt="chart"/>
     <p>Description: {{ info }}</p>
 </div>
+
+
+
 </body>
 </html>

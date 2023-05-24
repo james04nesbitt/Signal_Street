@@ -6,20 +6,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+        <link rel="stylesheet" href="{% static 'index.css' %}">
 
 </head>
 <body>
-    <img class= "logo" src = "{% static 'img/ss.jpg' %}"/>
-    <div class="ticker">
+    <div class="parent">
+    <img id= "logo" class="child" src = "{% static 'img/ss.jpg' %}"/>
+    <div id="ticker" class="child">
     <form method="post">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" value="Submit">
+
     </form>
 
     </div>
 
+    </div>
+    <div class="chars">
+            <img class = 'chart' src="data:image/png;base64,{{ nas| safe }}" alt="chart"/>
+            <img class="chart"  src="data:image/png;base64,{{ dow| safe }}" alt="chart"/>
+            <img class="chart" src="data:image/png;base64,{{ sp500| safe }}" alt="chart"/>
+    </div>
+    <div class="gains table">
+    <table class = "Biggest Gainers">
+        <th>Biggest Gainers</th>
+        {% for item in gainers %}
+            <tr>{{ item[ }}</tr>
+        {% endfor %}
+    </table>
+    </div>
+    <div class="loss table">
+    <table class = "Biggest Losers">
+        <th>Biggest Losers</th>
+    </table>
+</div>
 </body>
 </html>
 
