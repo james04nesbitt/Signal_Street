@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    #ticker {
+        display: inline-block;
+        width: 30em;
+        margin-top: 0;
+    }
+
+    .parent {
+        display: flex;
+        width: 50%;
+    }
+
+    .child {
+        flex: 1;
+
+        margin: 10px;
+    }
+
+    body {
+        background-color: #1f242d;
+        color: whitesmoke;
+    }
+
+    table, td, tr {
+        border: 1px solid #088F8F;
+
+    }
+
+    nav {
+        border: 10px solid #088F8F;
+        margin-bottom: 2em;
+        height: 8em;
+    }
+
+    .watchlist{
+        margin-left: 3em;
+    }
+
+
+    #logo {
+        height: 7em;
+        width: 4em;
+        margin-right: 2em;
+        margin-left: 0em;
+    }
+
+    .tick{
+        background-color: #00363a;
+        color: #088F8F;
+        margin-top: 1em;
+        margin-left: 270%;
+        float: left;
+        height: 2em;
+        text-align: center;
+        font-family: 'Courier New', monospace;
+        font-size: 1em;
+    }
+
+    .globe{
+        height: 3em;
+        width: 9em;
+        margin-top: 1em;
+        background-color: #00363a;
+        text-align: center;
+        font-family: 'Courier New', monospace;
+        font-size: 1em;
+        color: #088F8F;
+    }
+    a:visited{
+        text-decoration: none;
+        color: #088F8F;
+    }
+
+
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+
+</head>
+
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+<script src="https://unpkg.com/htmx.org@1.1.0"></script>
+<nav>
+    <div class="parent">
+        <img alt = "" id="logo" class="child" src="{% static 'img/ss.jpg' %}"/>
+        <button type="button" class="globe"><a href='markets'>Global Markets</a></button>
+        <button type="button" class="globe watclist"><a href='watchlist'>Watchlist</a></button>
+
+        <div id="ticker" class="child">
+            <form method="post">
+                {% csrf_token %}
+                <input class="tick" type="search" placeholder="Ticker" aria-label="Search" name="ticker">
+
+            </form>
+        </div>
+    </div>
+</nav>
+{% block content %}
+{% endblock %}
+
+
+</body>
+</html>
+

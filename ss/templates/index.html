@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <style>
+        body {
+            background-color: #1f242d;
+            color: whitesmoke;
+        }
+
+        table, td, tr {
+            border: 1px solid #088F8F;
+
+
+        }
+
+        nav {
+            border: 10px solid #088F8F;
+            margin-bottom: 2em;
+            height: 8em;
+        }
+
+        .chars, .tables, .EC ,.portfolio{
+            border: 10px solid #088F8F;
+
+
+        }
+
+        .tables {
+            width: 20%;
+            margin-top: 2em;
+            padding:.3em
+        }
+
+        .table {
+            margin-left: 2em;
+            width: 10%;
+            margin-top: 1em;
+        }
+
+
+        .chart {
+            width: 25%;
+            margin-right: 2em;
+            height: 9em;
+            border-color: antiquewhite;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #088F8F;
+        }
+        .float-child{
+            float: left;
+        }
+        .EC{
+            margin-left: 2em;
+            margin-top: 1em;
+            width: 45%;
+
+
+            margin-right: 0;
+            }
+        #title{
+            font-size: 1.5em;
+        }
+        .portfolio{
+            margin-top: 1em;
+            margin-left: 1em;
+            width: 25%;
+            height: 40em;
+        }
+        .entry{
+            margin-bottom: 1em;
+            height: 3em;
+        }
+        .links{
+            color: whitesmoke;
+            font-family: 'Courier New', monospace;
+            text-decoration: none;
+
+
+        }
+
+
+    </style>
+
+
+    <div class="chars">
+        <img class='chart' src="data:image/png;base64,{{ nas| safe }}" alt="chart" style="margin-left: 8em"/>
+        <img class="chart" src="data:image/png;base64,{{ dow| safe }}" alt="chart"/>
+        <img class="chart" src="data:image/png;base64,{{ sp500| safe }}" alt="chart"/>
+    </div>
+    <div class="float-parent">
+    <div class="tables float-child">
+        <div class="gains table">
+            <table class="BiggestGainers">
+                <tr>Biggest Gainers</tr>
+                {% for item in gainers %}
+                    <tr style="color: #006b1b">
+                        <td>{{ item.symbol }}</td>
+                        <td>${{ item.price }}</td>
+                        <td>{{ item.changesPercentage }}%</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="loss table">
+            <table class="BiggestLosers">
+                <tr style="width: 3em">Biggest Losers</tr>
+                {% for item in losers %}
+                    <tr style="color: #a41515">
+                        <td>{{ item.symbol }}</td>
+                        <td>${{ item.price }}</td>
+                        <td>{{ item.changesPercentage }}%</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="active table">
+            <table class="MostActive">
+                <tr>Most Active</tr>
+                {% for item in active %}
+                    <tr style="color: #088F8F">
+                        <td>{{ item.symbol }}</td>
+                        <td>${{ item.price }}</td>
+                        <td>{{ item.changesPercentage }}%</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="EC float-child">
+    <h1 id="title">News</h1>
+    <table class="news">
+        {% for item in news %}
+            <tr class="entry">
+                <td class="headline">
+            <a class = "links"href="{{ item.url }}">{{ item.headline }}</a>
+            {{ item.related }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+    <div class="portfolio float-child">
+    <h3>Portfolio Performance</h3>
+    </div>
+{% endblock %}
+
