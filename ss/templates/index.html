@@ -31,7 +31,9 @@
             margin-top: 2em;
             padding:.3em
         }
-
+        a{
+            color: inherit;
+        }
         .table {
             margin-left: 2em;
             width: 10%;
@@ -44,6 +46,7 @@
             margin-right: 2em;
             height: 9em;
             border-color: antiquewhite;
+            margin-top: 1em;
         }
 
         a:visited {
@@ -81,6 +84,11 @@
 
 
         }
+        .Portfolio{
+            width: 20em;
+            text-align: center;
+            margin-left: 1em;
+        }
 
 
     </style>
@@ -98,7 +106,7 @@
                 <tr>Biggest Gainers</tr>
                 {% for item in gainers %}
                     <tr style="color: #006b1b">
-                        <td>{{ item.symbol }}</td>
+                        <td><a href="stock/{{ item.symbol }}">{{ item.symbol }}</a></td>
                         <td>${{ item.price }}</td>
                         <td>{{ item.changesPercentage }}%</td>
                     </tr>
@@ -110,7 +118,7 @@
                 <tr style="width: 3em">Biggest Losers</tr>
                 {% for item in losers %}
                     <tr style="color: #a41515">
-                        <td>{{ item.symbol }}</td>
+                        <td><a href="stock/{{ item.symbol }}">{{ item.symbol }}</a></td>
                         <td>${{ item.price }}</td>
                         <td>{{ item.changesPercentage }}%</td>
                     </tr>
@@ -122,7 +130,7 @@
                 <tr>Most Active</tr>
                 {% for item in active %}
                     <tr style="color: #088F8F">
-                        <td>{{ item.symbol }}</td>
+                        <td><a href="stock/{{ item.symbol }}">{{ item.symbol }}</a></td>
                         <td>${{ item.price }}</td>
                         <td>{{ item.changesPercentage }}%</td>
                     </tr>
@@ -144,7 +152,31 @@
     </table>
     </div>
     <div class="portfolio float-child">
-    <h3>Portfolio Performance</h3>
+    <h3>Watchlist</h3>
+    <table class="Portfolio">
+                <tr>
+                    <td>Ticker</td>
+                    <td>Price</td>
+                    <td>Change</td>
+                {% for stock in pf %}
+
+
+                    </tr>
+                    <tr class = "prow"style="color: #088F8F">
+                        <td><a href="stock/{{ stock.ticker }}">{{ stock.ticker}}</a></td>
+                        <td>{{ stock.price }}</td>
+                        {% if stock.pos %}
+                            <td style="color:green">{{ stock.amchanged }} ({{ stock.perchange }})</td>
+                            {% else %}
+                            <td style="color:red">{{ stock.amchanged }} ({{ stock.perchange }})</td>
+
+                        {% endif %}
+
+
+
+                    </tr>
+                {% endfor %}
+            </table>
     </div>
 {% endblock %}
 

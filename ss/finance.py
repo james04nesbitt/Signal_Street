@@ -1,7 +1,7 @@
 import yfinance as yf
 
 
-def get_data(ticker):
+def get_tick(ticker):
     data = yf.Ticker(ticker).info
     return data
 

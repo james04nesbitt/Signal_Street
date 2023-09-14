@@ -1,12 +1,7 @@
 body{
-    background-color: gray;
 
 }
-#logo{
-    height: 5em;
-    width:5em;
-    border-radius: 50%;
-}
+
 #ticker{
     display:inline-block;
     width: 30em;
@@ -21,15 +16,5 @@ body{
 
     margin: 10px;
 }
-.child:first-child{
-    margin-right: 30em;
-}
 
-.chart{
-    width :25%;
-    margin-right: 2em;
-}
 
-.charts{
-    margin-left: 5em;
-}

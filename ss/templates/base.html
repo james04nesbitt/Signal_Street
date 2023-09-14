@@ -36,9 +36,6 @@
         height: 8em;
     }
 
-    .watchlist{
-        margin-left: 3em;
-    }
 
 
     #logo {
@@ -52,7 +49,7 @@
         background-color: #00363a;
         color: #088F8F;
         margin-top: 1em;
-        margin-left: 270%;
+        margin-left: 220%;
         float: left;
         height: 2em;
         text-align: center;
@@ -90,9 +87,8 @@
 <script src="https://unpkg.com/htmx.org@1.1.0"></script>
 <nav>
     <div class="parent">
-        <img alt = "" id="logo" class="child" src="{% static 'img/ss.jpg' %}"/>
+        <a style="width: 5em; margin-right: 4em" href="index"><img alt = "" id="logo" class="child" style="width: 9em"src="{% static 'img/ss.jpg' %}"/></a>
         <button type="button" class="globe"><a href='markets'>Global Markets</a></button>
-        <button type="button" class="globe watclist"><a href='watchlist'>Watchlist</a></button>
 
         <div id="ticker" class="child">
             <form method="post">
