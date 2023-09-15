@@ -7,6 +7,9 @@ from .chart import get_chart, closing_price
 from .finmodel import get_data
 from .finnews import get_news
 
+
+
+
 def index(request):
     context = {}
     if request.method == 'POST':
@@ -20,14 +23,14 @@ def index(request):
     context['sp500'] = get_chart("^GSPC","S&P500")
     context['dow'] = get_chart("^DJI", "Dow Jones Industrial Average")
     context['nas'] = get_chart("^IXIC","Nasdaq Composite")
-    try:
-        context['gainers'] = get_data("stock_market/gainers")[:10]
-        context['losers'] = get_data("stock_market/losers")[:10]
-        context['active'] = get_data("stock_market/actives")[:10]
-    except:
-        context['gainers'] = {}
-        context['losers'] = {}
-        context['active'] = {}
+    # try:
+    #     context['gainers'] = get_data("stock_market/gainers")[:10]
+    #     context['losers'] = get_data("stock_market/losers")[:10]
+    #     context['active'] = get_data("stock_market/actives")[:10]
+    # except:
+    context['gainers'] = {}
+    context['losers'] = {}
+    context['active'] = {}
 
     context['news'] = get_news()[:15]
     for news in context['news']:
@@ -70,7 +73,9 @@ def ticker(request, tid):
         return render(request, 'ticker.html', context)
     if tid == 'index' or tid == 'markets':
         return HttpResponseRedirect('/')
-
+    # if 'finalgbtn' in request.POST:
+    #     # Redirect to the /watchlist URL when the button is clicked
+    #     return redirect('finalg')
 
     if request.method == 'POST':
         if 'add' in request.POST:
@@ -85,11 +90,13 @@ def ticker(request, tid):
             form = TickerForm()
     context['form'] = TickerForm()
     data = get_tick(tid)
-    context['ticker'] = tid.upper()
-    context["name"] = data["longName"]
-    context['price'] = data["currentPrice"]
-    context["info"] = data["longBusinessSummary"]
-    context['graph'] = get_chart(tid, context["name"])
+    # context['ticker'] = tid.upper()
+    # context["name"] = data["longName"]
+    # context['price'] = data["currentPrice"]
+    # context["info"] = data["longBusinessSummary"]
+    context['graph'] = get_chart(tid, data["longName"])
+    for col in data:
+        context[col] = data[col]
     return render(request, 'ticker.html', context)
 
 def markets(request):
@@ -99,6 +106,12 @@ def markets(request):
     except:
         context['secperf'] = {}
     return  render(request, 'globe.html', context)
+def finalg(requst):
+    context = {}
+    return render(requst, 'finalg.html',context)
+def watchlist(requst):
+    context = {}
+    return  render(requst, "watchlist.html", context)
 
 
 

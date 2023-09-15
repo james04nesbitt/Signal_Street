@@ -3,6 +3,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
+:root {
+  --shadow: #7FFFD4;
+  --scrollbarBG: rgba(0, 0, 0, 0.41);
+  --thumbBG: antiquewhite;
+}
+::-webkit-scrollbar {
+  width: 7px;
+  height: 1px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+  width: 20px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  box-shadow: 0 -100vh 0 100vh var(--shadow), 0 0 15px 5px black;
+}
     #ticker {
         display: inline-block;
         width: 30em;
@@ -58,19 +75,41 @@
     }
 
     .globe{
-        height: 3em;
-        width: 9em;
-        margin-top: 1em;
+
+        margin-top: 2em;
         background-color: #00363a;
         text-align: center;
         font-family: 'Courier New', monospace;
-        font-size: 1em;
+
         color: #088F8F;
+        margin-left: 8%;
+        padding-left: 2%;
+        padding-right: 2%;
+        height: 5em;
+        width:20em;
+        font-size: 90%;
+        text-decoration: none;
+        font-weight: bold;
     }
     a:visited{
         text-decoration: none;
         color: #088F8F;
     }
+    a {
+    text-decoration: none;
+        {#font-weight: bold;#}
+    -webkit-transition: color 1s;
+    -moz-transition:    color 1s;
+    -ms-transition:     color 1s;
+    -o-transition:      color 1s;
+    transition:         color 1s;
+}
+
+a:hover {
+    color: #088F8F;
+    transition: 2s;
+}
+
 
 
 
@@ -88,7 +127,11 @@
 <nav>
     <div class="parent">
         <a style="width: 5em; margin-right: 4em" href="index"><img alt = "" id="logo" class="child" style="width: 9em"src="{% static 'img/ss.jpg' %}"/></a>
-        <button type="button" class="globe"><a href='markets'>Global Markets</a></button>
+
+        <button type="button" class="globe" id ='finalgbtn'><a href="{% url 'finalg' %}">Financial Algorithms </a></button>
+        <button type="button" class="globe finalg"><a href={% url 'markets' %}>Global Markets</a></button>
+        <button type="button" class="globe markets"><a href='{% url 'watchlist' %}'>Watchlist</a></button>
+
 
         <div id="ticker" class="child">
             <form method="post">

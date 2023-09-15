@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Algorithms</title>
+    <style>
+        body{
+            background-color: #00363a;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        .title{
+            animation: fadeIn 1.5s ease-in-out;
+            text-align: center;
+            font-family: "Lucinda Grande", "Lucinda Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+            color:snow;
+        }
+        .type {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid aquamarine; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+    text-align: center;
+            width: 40%;
+            padding: 0;
+            margin-left: 30%;
+  {#letter-spacing: .15em; /* Adjust as needed */#}
+  animation:
+    typing 2.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+            font-family: Courier-new;
+            color:antiquewhite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 35% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: aquamarine; }
+}
+
+    .type{
+        font-size: 200%;
+    }
+
+    .left{
+        margin-top: 3%;
+        margin-left:5%;
+    }
+
+    </style>
+</head>
+<body style="color: antiquewhite">
+    <h1 class="type">My Financial/Quantitative Algorithms</h1>
+    <div class="models">
+    <div class="model">
+        <a href=""
+        <div class="xgboost left">
+            <h2>XGBoost Model</h2>
+
+        </div>
+            </div>
+    </div>
+
+
+</body>
+</html>
